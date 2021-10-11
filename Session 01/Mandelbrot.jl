@@ -10,9 +10,7 @@ function mandelbrot_iterations(c::Complex, max_iterations::Int64)
     return 0
 end
 
-"""
-Plots the Mandelbrot Set centered at `a+b*j` (j = sqrt(-1)). If `a+b*j = 0`, it plots the whole set. Otherwise, it plots a 1/4 x 1/4 inset centered at `a+b*j`
-"""
+# Plots the Mandelbrot Set centered at `a+b*j` (j = sqrt(-1)). If `a+b*j = 0`, it plots the whole set. Otherwise, it plots a 1/4 x 1/4 inset centered at `a+b*j`
 function mandelbrot(a::Float64=0.00, b::Float64=0.00, n::Int64=3500)
     if a == 0 && b == 0
         re_min, re_max = -1.50, 0.50

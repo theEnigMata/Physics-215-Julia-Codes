@@ -31,7 +31,7 @@ def main():
     
     fig, ax = plt.subplots()
     ax.plot(k, ellip)
-    ax.plot(k, ellip1)
+    # ax.plot(k, ellip1)
     plt.show()
     
 if __name__ == '__main__':

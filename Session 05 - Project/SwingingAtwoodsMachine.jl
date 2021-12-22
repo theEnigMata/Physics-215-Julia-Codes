@@ -1,6 +1,11 @@
 using Plots
-const G = 9.80665
+const G = 9.80665   # Acceleration due to gravity g (in m/s^2)
 
+"""
+    get_dstate(s, μ)
+
+Computes for change in initial state `s` in system given mass ratio `μ`.
+"""
 function get_dstate(s, μ)
     ṡ = copy(s)
 
@@ -16,6 +21,11 @@ function get_dstate(s, μ)
     return ṡ
 end
 
+"""
+    RK4(motion, init_state, dt, μ)
+
+Numerically integrates system for time interval `dt` given initial state `init_state` and mass ratio `μ`, stores everything in `motion`.
+"""
 function RK4!(motion, init_state, dt, μ)
     for i in 1:size(motion)[2]
         motion[:,i] = init_state
@@ -32,6 +42,11 @@ function RK4!(motion, init_state, dt, μ)
     end
 end
 
+"""
+    plotter(motion, time, μ)
+
+Plots the trajectory of the small mass from `motion` at all times `time` given mass ratio `μ`.
+"""
 function plotter(motion, time, μ)
     r = motion[1,:]
     θ = motion[2,:]
@@ -74,6 +89,11 @@ function plotter(motion, time, μ)
     display(plt3);
 end
 
+"""
+    SwingingAtwoodsMachine(μ::Float64=1.1185, t_fin::Float64=12.500)
+
+Given mass ratio `μ` and final time for integration `t_fin`, it integrates the system, and plots the trajectory of the resulting motion.
+"""
 function SwingingAtwoodsMachine(μ::Float64=1.1185, t_fin::Float64=12.500)
     dt = 10.0^(-3.0)
     time = 0.0:dt:t_fin
@@ -85,6 +105,11 @@ function SwingingAtwoodsMachine(μ::Float64=1.1185, t_fin::Float64=12.500)
     plotter(sys_motion, time, μ)
 end
 
+"""
+    benchmark_func(μ::Float64=1.1185, t_fin::Float64=12.500)
+
+Does the same thing as SwingingAtwoodsMachine() without plotting the trajectory of the resulting motion. Used mainly for benchmarking.
+"""
 function benchmark_func(μ::Float64=1.1185, t_fin::Float64=12.500)
     dt = 10.0^(-3.0)
     time = 0.0:dt:t_fin

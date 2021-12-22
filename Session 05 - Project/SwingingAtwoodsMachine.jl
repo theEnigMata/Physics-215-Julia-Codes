@@ -53,40 +53,18 @@ function plotter(motion, time, μ)
     x = r.*sin.(θ)
     y = - r.*cos.(θ)
 
-    # plt1 = plot(time, motion[1,:]
-    #     ,label="r-position"
-    #     ,linecolor=:green
-    # )
-    
-    # plot!(plt1, time, motion[3,:]
-    #     ,label="r-velocity"
-    #     ,linecolor=:maroon
-    # )
-
-    # plt2 = plot(time, motion[2,:]
-    #     ,label="theta-position"
-    #     ,linecolor=:green
-    # )
-    
-    # plot!(plt2, time, motion[4,:]
-    #     ,label="theta-velocity"
-    #     ,linecolor=:maroon
-    # )
-
-    plt3 = plot(x, y
+    plt = plot(x, y
                 ,label="μ = $(μ)"
                 ,linecolor=:green
     )
-    plot!(plt3
+    plot!(plt
         ,xaxis="x-position"
         ,yaxis="y-position"
         ,legend=:bottomright
         ,aspect_ratio=:equal
     )
-    
-    # display(plt1);
-    # display(plt2);
-    display(plt3);
+
+    display(plt);
 end
 
 """

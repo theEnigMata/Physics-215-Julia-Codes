@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-"""@author: User"""
+"""@author: Chris Sevilla"""
 
 from numpy import arange, zeros, array, pi, sin, cos
 import matplotlib
@@ -59,17 +58,30 @@ def SwingingAtwoodsMachine(mu = 1.1185, t_fin = 12.50):
     sys_motion = zeros((len(time), 4))
     
     init_state = array([1.00, pi/2.00, 0.00, 0.00])
-    
     sys_motion = RK4(sys_motion, init_state, dt, mu)
     
-    # plotter(sys_motion, time, mu)
+    plotter(sys_motion, time, mu)
+
+def benchmark_func(mu = 1.1185, t_fin = 12.50):
+    dt = 10.0**(-2.0)
+    time = arange(0.0, t_fin, dt)
+    sys_motion = zeros((len(time), 4))
+    
+    init_state = array([1.00, pi/2.00, 0.00, 0.00])
+    sys_motion = RK4(sys_motion, init_state, dt, mu)
 
 G = 9.80665
 def main():
     plt.close("all")
-    # SwingingAtwoodsMachine()
+
+    # For running the program
+    SwingingAtwoodsMachine()
+
+    # For benchmarking the program
     import timeit
-    print(timeit.Timer(SwingingAtwoodsMachine).timeit(number=766))
+    num_of_iterations = 766
+    total_time = timeit.Timer(benchmark_func).timeit(number=num_of_iterations)
+    print("Average time per iteration is"+str(total_time/num_of_iterations)+" s.")
     
 if __name__ == '__main__':
     main()
